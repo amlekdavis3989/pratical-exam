@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript Task Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      padding: 20px;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      margin-bottom: 10px;
+    }
+    .info-box {
+      background-color: #2f4f5f;
+      color: white;
+      padding: 10px;
+      margin-bottom: 30px;
+    }
+    .task-section {
+      margin-top: 30px;
+    }
+    .task-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 15px;
+    }
+    .task-button {
+      background-color: #2f4f5f;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .task-button:hover {
+      background-color: #3d6f7f;
+    }
+    #stopwatchModal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #fff;
+      padding: 20px;
+      border: 2px solid #444;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #000;
+      z-index: 999;
+    }
+    #stopwatchModal button {
+      margin: 5px;
+      padding: 10px 15px;
+    }
+    .upload-section {
+      margin-top: 40px;
+    }
+    .upload-section input[type="file"] {
+      display: block;
+      margin-bottom: 10px;
+    }
+    .upload-preview img {
+      max-width: 100%;
+      max-height: 200px;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>STUDENT NAME :</h2>
+    <h2>CURRENT DATE :</h2>
+    <h2>SUBJECT NAME :</h2>
+
+    <div class="info-box">
+      <strong>INFORMATION ABOUT ME :</strong>
+    </div>
+
+    <div class="task-section">
+      <h3>Task Details:</h3>
+      <div class="task-grid">
+        <button class="task-button" onclick="task1()">Task 1</button>
+        <button class="task-button" onclick="task2()">Task 2</button>
+        <button class="task-button" onclick="task3()">Task 3</button>
+        <button class="task-button" onclick="task4()">Task 4</button>
+        <button class="task-button" onclick="task5()">Task 5</button>
+        <button class="task-button" onclick="task6()">Task 6</button>
+        <button class="task-button" onclick="task7()">Task 7</button>
+        <button class="task-button" onclick="task8()">Task 8</button>
+        <button class="task-button" onclick="task9()">Task 9</button>
+        <button class="task-button" onclick="task10()">Task 10</button>
+      </div>
+    </div>
+
+    <div class="upload-section">
+      <h3>Upload Screenshot:</h3>
+      <input type="file" id="screenshot" accept="image/*" multiple onchange="previewImages()">
+      <div class="upload-preview" id="preview"></div>
+    </div>
+  </div>
+
+  <div id="stopwatchModal">
+    <h3>Stopwatch</h3>
+    <p id="timerDisplay" style="font-size:24px;">0</p>
+    <button onclick="startTimer()">Start</button>
+    <button onclick="stopTimer()">Stop</button>
+    <button onclick="resetTimer()">Reset</button>
+    <button onclick="closeModal()">Close</button>
+  </div>
+
+  <script>
+    function task1() {
+      let a = +prompt("Enter first number:");
+      let b = +prompt("Enter second number:");
+      let op = prompt("Choose operation: +, -, *, /");
+      let result;
+      switch(op) {
+        case "+": result = a + b; break;
+        case "-": result = a - b; break;
+        case "*": result = a * b; break;
+        case "/": result = a / b; break;
+        default: result = "Invalid operation";
+      }
+      alert("Result: " + result);
+    }
+
+    function task2() {
+      let data = ["apple", "banana", "cherry"];
+      alert("Stored array: " + data.join(", "));
+    }
+
+    function task3() {
+      const arr = [2, 4, 6, 8];
+      const doubled = arr.map(x => x * 2);
+      alert("Doubled Array: " + doubled.join(", "));
+    }
+
+    function task4() {
+      let input = prompt("Enter a string of at least 10 characters:");
+      if (input.length >= 10) {
+        alert("10th character is: " + input[9]);
+      } else {
+        alert("Not enough characters!");
+      }
+    }
+
+    function task5() {
+      let array = prompt("Enter elements separated by commas:").split(",");
+      alert("Last element is: " + array[array.length - 1]);
+    }
+
+    function task6() {
+      let input = prompt("Enter a 10-digit number:");
+      if (/^\d{10}$/.test(input)) {
+        alert("Valid input");
+      } else {
+        alert("Input must be exactly 10 digits.");
+      }
+    }
+
+    function task7() {
+      let array = prompt("Enter a list of characters:").split("");
+      let word = prompt("Enter a word to search for:");
+      let repeated = array.filter((v, i, a) => a.indexOf(v) !== i && word.includes(v));
+      alert("Repeated characters in word: " + [...new Set(repeated)].join(", "));
+    }
+
+    function task8() {
+      let arr = prompt("Enter characters separated by commas:").split(",");
+      let vowels = arr.filter(char => /[aeiou]/i.test(char)).length;
+      alert("Number of vowels: " + vowels);
+    }
+
+    function task9() {
+      let data = ["John", "Doe", 123];
+      alert("Array: " + JSON.stringify(data));
+    }
+
+    function task10() {
+      const nums = [5, 10, 15];
+      const result = nums.map(n => n * 2);
+      alert("Doubled: " + result.join(", "));
+    }
+
+    let timer = 0;
+    let intervalId;
+
+    function startTimer() {
+      if (!intervalId) {
+        intervalId = setInterval(() => {
+          timer++;
+          document.getElementById('timerDisplay').textContent = timer;
+        }, 1000);
+      }
+    }
+
+    function stopTimer() {
+      clearInterval(intervalId);
+      intervalId = null;
+    }
+
+    function resetTimer() {
+      stopTimer();
+      timer = 0;
+      document.getElementById('timerDisplay').textContent = timer;
+    }
+
+    function closeModal() {
+      stopTimer();
+      document.getElementById('stopwatchModal').style.display = 'none';
+    }
+
+    function previewImages() {
+      const preview = document.getElementById('preview');
+      const files = document.getElementById('screenshot').files;
+      preview.innerHTML = "";
+      for (let file of files) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const img = document.createElement('img');
+          img.src = e.target.result;
+          preview.appendChild(img);
+        }
+        reader.readAsDataURL(file);
+      }
+    }
+  </script>
+</body>
+</html>
